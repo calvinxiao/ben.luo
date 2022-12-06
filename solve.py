@@ -69,7 +69,7 @@ def solve():
 
 			
 	MAX = 100
-	for i in range(0, 100):
+	for i in range(0, MAX):
 		solveQ(i)
 		solveDeltaC(i)
 		solveC(i)
