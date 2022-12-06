@@ -1,4 +1,5 @@
 import sympy
+import csv
 
 def solve():
 	a = 0.2
@@ -59,12 +60,13 @@ def solve():
 		p.append(pii)
 		q.append(qii)
 
-	def printAll():
-		print('p:')
-		print(p)
-		print('q:')
-		print(q)
-		print('end')
+	def writeCSV():
+		with open('./csv.csv', 'w', newline='' ) as csvfile:
+			writer = csv.writer(csvfile, delimiter=',')
+			writer.writerow(['p', 'q'])
+			for i in range(0, len(pm)):
+				writer.writerow([p[i], q[i]])
+
 			
 	MAX = 100
 	for i in range(0, 100):
@@ -74,10 +76,11 @@ def solve():
 		solvePMPS(i + 1)
 		solvePQ(i)
 
+		# writeCSV()
 		if q[i] * 1.0 / p[i] < m or c[i] > 0.2 or pm[i] <= 0:
 			break
-	
-	printAll()
+
+	writeCSV()	
 
 if __name__ == '__main__':
 	solve()
